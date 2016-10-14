@@ -70,11 +70,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
         // Setting up the Initial Chess board.
         for (int i = 8; i < 16; i++) {
-            pieces = new JLabel(new ImageIcon(PIECE_FILE_PATH + "WhitePawn.png"));
+            pieces = new JLabel(new ImageIcon(Main.class.getResource("WhitePawn.png")));
             panels = (JPanel) chessBoard.getComponent(i);
             panels.add(pieces);
         }
-//        pieces = new JLabel(new ImageIcon(PIECE_FILE_PATH + "WhiteRook.png"));
         pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteRook.png")));
         panels = (JPanel) chessBoard.getComponent(0);
         panels.add(pieces);
@@ -268,8 +267,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             } else {
                 location = (startY * 8) + startX;
             }
-            String pieceLocation = PIECE_FILE_PATH + pieceName + ".png";
-            pieces = new JLabel(new ImageIcon(pieceLocation));
+            pieces = new JLabel(new ImageIcon(Main.class.getResource(pieceName + ".png")));
             panels = (JPanel) chessBoard.getComponent(location);
             panels.add(pieces);
         } else {
@@ -322,6 +320,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
      ********************************************************************/
 
     private void moveWhitePawn() {
+        if (landingY < startY) {
+            validMove = false;
+            return;
+        }
         if (startY == 1) {
             if ((yMovement == 1 || yMovement == 2) && (startY < landingY) && xMovement == 0) {
                 if (yMovement == 2) {
@@ -378,6 +380,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
      ********************************************************************/
 
     private void moveBlackPawn() {
+        if (landingY > startY) {
+            validMove = false;
+            return;
+        }
         if (startY == 6) {
             if ((yMovement == 1 || yMovement == 2) && (startY > landingY) && xMovement == 0) {
                 if (yMovement == 2) {
