@@ -34,6 +34,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     private boolean validMove;
     private boolean success;
 
+    private String pieceName;
+
     MouseEvent currentEvent;
 
     JPanel panels;
@@ -214,7 +216,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         success = false;
         Component c = chessBoard.findComponentAt(e.getX(), e.getY());
         String tmp = chessPiece.getIcon().toString();
-        String pieceName = new File(tmp).getName();
+        pieceName = new File(tmp).getName();
         pieceName = pieceName.substring(0, (pieceName.length() - 4));
         validMove = false;
 
@@ -248,6 +250,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                 break;
             case "BlackPawn":
                 moveBlackPawn();
+                break;
+            case "WhiteKnight":
+            case "BlackKnight":
+                moveKnight();
                 break;
             case "BlackQueen":
                 moveBlackQueen();
@@ -446,6 +452,41 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             } else {
                 validMove = false;
             }
+        }
+    }
+
+    /********************************************************************
+     *
+     * Both Knights
+     *
+     ********************************************************************/
+
+    private void moveKnight() {
+        if ((landingX < 0 || landingX > 7) || (landingY < 0 || landingY > 7)) {
+            validMove = false;
+            return;
+        }
+        String iam = (pieceName.contains("White")) ? "White" : "Black";
+        if ((xMovement == 1 && yMovement == 2) || (xMovement == 2 && yMovement == 1)) {
+            if (piecePresent(currentEvent.getX(), currentEvent.getY())) {
+                if (pieceName.contains("White")) {
+                    if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
+                        validMove = true;
+                    } else {
+                        validMove = false;
+                    }
+                } else {
+                    if (checkBlackOponent(currentEvent.getX(), currentEvent.getY())) {
+                        validMove = true;
+                    } else {
+                        validMove = false;
+                    }
+                }
+            } else {
+                validMove = true;
+            }
+        } else {
+            validMove = false;
         }
     }
 
