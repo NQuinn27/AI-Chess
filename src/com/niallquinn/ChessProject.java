@@ -83,10 +83,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteKnight.png")));
         panels = (JPanel) chessBoard.getComponent(6);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteBishup.png")));
+        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteBishop.png")));
         panels = (JPanel) chessBoard.getComponent(2);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource( "WhiteBishup.png")));
+        pieces = new JLabel(new ImageIcon(Main.class.getResource( "WhiteBishop.png")));
         panels = (JPanel) chessBoard.getComponent(5);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteKing.png")));
@@ -112,10 +112,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackKnight.png")));
         panels = (JPanel) chessBoard.getComponent(62);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackBishup.png")));
+        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackBishop.png")));
         panels = (JPanel) chessBoard.getComponent(58);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackBishup.png")));
+        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackBishop.png")));
         panels = (JPanel) chessBoard.getComponent(61);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackKing.png")));
@@ -272,18 +272,34 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             panels.add(pieces);
         } else {
             if (success) {
-                int location = 56 + (e.getX() / 75);
+                String colour = pieceName.contains("White") ? "White" : "Black";
+                int location = (colour.equals("White")) ? 56 + (e.getX() / 75) : (e.getX() / 75);;
+                Object [] options = {"Pawn", "Rook", "Knight", "Bishop", "King", "Queen"};
+
+                JOptionPane pane = new JOptionPane("Choose a piece to turn into", JOptionPane.QUESTION_MESSAGE);
+                pane.setWantsInput(true);
+                pane.setSelectionValues(options);
+                pane.setInitialSelectionValue(options[0]);
+                JDialog dialog = pane.createDialog(layeredPane, "Success");
+                dialog.show();
+                String selectedPiece = pane.getInputValue().toString();
                 if (c instanceof JLabel) {
                     Container parent = c.getParent();
                     parent.remove(0);
-                    pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteQueen.png")));
+                    pieces = new JLabel(new ImageIcon(Main.class.getResource(colour + selectedPiece + ".png")));
                     parent = (JPanel) chessBoard.getComponent(location);
                     parent.add(pieces);
+                    pieces.setVisible(true);
+                    parent.validate();
+                    parent.repaint();
                 } else {
                     Container parent = (Container) c;
-                    pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteQueen.png")));
+                    pieces = new JLabel(new ImageIcon(Main.class.getResource(colour + selectedPiece + ".png")));
                     parent = (JPanel) chessBoard.getComponent(location);
                     parent.add(pieces);
+                    pieces.setVisible(true);
+                    parent.validate();
+                    parent.repaint();
                 }
             } else {
                 if (c instanceof JLabel) {
