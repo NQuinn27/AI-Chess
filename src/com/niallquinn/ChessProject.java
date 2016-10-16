@@ -261,6 +261,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         }
 
         whiteMove = !whiteMove;
+
         switch (pieceName) {
             case "WhitePawn":
                 moveWhitePawn();
@@ -342,25 +343,15 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
     /********************************************************************
      *
-     * Black Queen
-     *
-     ********************************************************************/
-
-    private void moveBlackQueen() {
-        validMove = true;
-    }
-
-    private void moveWhiteQueen() {
-        validMove = true;
-    }
-
-    /********************************************************************
-     *
      * White Pawn
      *
      ********************************************************************/
 
     private void moveWhitePawn() {
+        if ((landingX < 0 || landingX > 7) || (landingY < 0 || landingY > 7)) {
+            validMove = false;
+            return;
+        }
         if (landingY < startY) {
             validMove = false;
             return;
@@ -380,6 +371,23 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                         validMove = false;
                     }
                 }
+            } else if (xMovement == 1 && yMovement == 1) {
+                if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
+                    if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
+                        JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
+                        System.exit(1);
+                    }
+                    if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
+                        validMove = true;
+                        if (startY == 6) {
+                            success = true;
+                        }
+                    } else {
+                        validMove = false;
+                    }
+                } else {
+                    validMove = false;
+                }
             } else {
                 validMove = false;
             }
@@ -392,9 +400,6 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                     }
                     if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
                         validMove = true;
-                        if (startY == 6) {
-                            success = true;
-                        }
                     } else {
                         validMove = false;
                     }
@@ -425,6 +430,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
      ********************************************************************/
 
     private void moveBlackPawn() {
+        if ((landingX < 0 || landingX > 7) || (landingY < 0 || landingY > 7)) {
+            validMove = false;
+            return;
+        }
         if (landingY > startY) {
             validMove = false;
             return;
@@ -444,7 +453,21 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                         validMove = false;
                     }
                 }
-            } else {
+            } else if (xMovement == 1 && yMovement == 1) {
+                if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
+                    if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
+                        JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
+                        System.exit(1);
+                    }
+                    if (checkBlackOponent(currentEvent.getX(), currentEvent.getY())) {
+                        validMove = true;
+                    } else {
+                        validMove = false;
+                    }
+                } else {
+                    validMove = false;
+                }
+            }else {
                 validMove = false;
             }
         } else {
@@ -744,6 +767,5 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     public void mouseExited(MouseEvent e) {
 
     }
-
 }
 
