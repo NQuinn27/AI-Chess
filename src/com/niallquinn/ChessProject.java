@@ -382,11 +382,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             } else if (xMovement == 1 && yMovement == 1) {
                 if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
                     if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                        if (whitePawn) {
-                            JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
-                        }
+                        String winMessage = whitePawn ? "Game Over - White Wins!!" : "Game Over - Black Wins!!";
+                        JOptionPane.showMessageDialog(null, winMessage);
                         System.exit(1);
                     }
                     Boolean opponentCondition = whitePawn ? checkWhiteOponent(currentEvent.getX(), currentEvent.getY()): checkBlackOponent(currentEvent.getX(), currentEvent.getY());
@@ -404,11 +401,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             if (p2StartCondition) {
                 if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
                     if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                        if (whitePawn) {
-                            JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
-                        }
+                        String winMessage = whitePawn ? "Game Over - White Wins!!" : "Game Over - Black Wins!!";
+                        JOptionPane.showMessageDialog(null, winMessage);
                         System.exit(1);
                     }
                     Boolean opponentCondition = whitePawn ? checkWhiteOponent(currentEvent.getX(), currentEvent.getY()): checkBlackOponent(currentEvent.getX(), currentEvent.getY());
@@ -448,6 +442,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             }
         }
     }
+
     /********************************************************************
      *
      * Both Knights
