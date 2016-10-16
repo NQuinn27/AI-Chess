@@ -661,16 +661,16 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     }
 
     private Boolean isGameOver(int newX, int newY) {
-        Boolean oponent = false;
+        Boolean kingTaken = false;
         Component c1 = chessBoard.findComponentAt(newX, newY);
-        JLabel awaitingPiece = (JLabel) c1;
-        String tmp1 = awaitingPiece.getIcon().toString();
+        JLabel takenPiece = (JLabel) c1;
+        String tmp1 = takenPiece.getIcon().toString();
         if (((tmp1.contains("King")))) {
-            oponent = true;
+            kingTaken = true;
         } else {
-            oponent = false;
+            kingTaken = false;
         }
-        return oponent;
+        return kingTaken;
     }
 
     private void putPieceBack() {
