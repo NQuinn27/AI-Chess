@@ -1,8 +1,4 @@
 package com.niallquinn;
-
-import com.sun.org.apache.xerces.internal.impl.dv.xs.BooleanDV;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -74,61 +70,61 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
         // Setting up the Initial Chess board.
         for (int i = 8; i < 16; i++) {
-            pieces = new JLabel(new ImageIcon(Main.class.getResource("WhitePawn.png")));
+            pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhitePawn.png")));
             panels = (JPanel) chessBoard.getComponent(i);
             panels.add(pieces);
         }
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteRook.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteRook.png")));
         panels = (JPanel) chessBoard.getComponent(0);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteKnight.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteKnight.png")));
         panels = (JPanel) chessBoard.getComponent(1);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteKnight.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteKnight.png")));
         panels = (JPanel) chessBoard.getComponent(6);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteBishop.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteBishop.png")));
         panels = (JPanel) chessBoard.getComponent(2);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource( "WhiteBishop.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource( "WhiteBishop.png")));
         panels = (JPanel) chessBoard.getComponent(5);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteKing.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteKing.png")));
         panels = (JPanel) chessBoard.getComponent(3);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteQueen.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteQueen.png")));
         panels = (JPanel) chessBoard.getComponent(4);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("WhiteRook.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("WhiteRook.png")));
         panels = (JPanel) chessBoard.getComponent(7);
         panels.add(pieces);
         for (int i = 48; i < 56; i++) {
-            pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackPawn.png")));
+            pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackPawn.png")));
             panels = (JPanel) chessBoard.getComponent(i);
             panels.add(pieces);
         }
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackRook.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackRook.png")));
         panels = (JPanel) chessBoard.getComponent(56);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackKnight.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackKnight.png")));
         panels = (JPanel) chessBoard.getComponent(57);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackKnight.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackKnight.png")));
         panels = (JPanel) chessBoard.getComponent(62);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackBishop.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackBishop.png")));
         panels = (JPanel) chessBoard.getComponent(58);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackBishop.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackBishop.png")));
         panels = (JPanel) chessBoard.getComponent(61);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackKing.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackKing.png")));
         panels = (JPanel) chessBoard.getComponent(59);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackQueen.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackQueen.png")));
         panels = (JPanel) chessBoard.getComponent(60);
         panels.add(pieces);
-        pieces = new JLabel(new ImageIcon(Main.class.getResource("BlackRook.png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackRook.png")));
         panels = (JPanel) chessBoard.getComponent(63);
         panels.add(pieces);
     }
@@ -310,7 +306,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                 if (c instanceof JLabel) {
                     Container parent = c.getParent();
                     parent.remove(0);
-                    pieces = new JLabel(new ImageIcon(Main.class.getResource(colour + selectedPiece + ".png")));
+                    pieces = new JLabel(new ImageIcon(ChessProject.class.getResource(colour + selectedPiece + ".png")));
                     parent = (JPanel) chessBoard.getComponent(location);
                     parent.add(pieces);
                     pieces.setVisible(true);
@@ -318,7 +314,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                     parent.repaint();
                 } else {
                     Container parent = (Container) c;
-                    pieces = new JLabel(new ImageIcon(Main.class.getResource(colour + selectedPiece + ".png")));
+                    pieces = new JLabel(new ImageIcon(ChessProject.class.getResource(colour + selectedPiece + ".png")));
                     parent = (JPanel) chessBoard.getComponent(location);
                     parent.add(pieces);
                     pieces.setVisible(true);
@@ -684,7 +680,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         } else {
             location = (startY * 8) + startX;
         }
-        pieces = new JLabel(new ImageIcon(Main.class.getResource(pieceName + ".png")));
+        pieces = new JLabel(new ImageIcon(ChessProject.class.getResource(pieceName + ".png")));
         panels = (JPanel) chessBoard.getComponent(location);
         panels.add(pieces);
         panels.validate();
@@ -705,5 +701,18 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     public void mouseExited(MouseEvent e) {
 
     }
+
+    /*
+	 * Main method that gets the ball moving.
+	 */
+    public static void main(String[] args) {
+        JFrame frame = new ChessProject();
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setResizable(true);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
 }
 
