@@ -404,25 +404,14 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                     Boolean opponentCondition = whitePawn ? checkWhiteOponent(currentEvent.getX(), currentEvent.getY()): checkBlackOponent(currentEvent.getX(), currentEvent.getY());
                     if (opponentCondition) {
                         validMove = true;
-                        Boolean successStartCondition = whitePawn == true ? startY == 6 : startY == 1;
-                        if (successStartCondition) {
-                            success = true;
-                        }
-                    } else {
-                        validMove = false;
-                    }
-                    if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
-                        validMove = true;
-                        if (startY == 6) {
-                            success = true;
-                        }
                     } else {
                         validMove = false;
                     }
                 } else {
                     if (!piecePresent(currentEvent.getX(), (currentEvent.getY()))) {
                         if (xMovement == 0 && yMovement == 1) {
-                            if (startY == 6) {
+                            Boolean successStartCondition = whitePawn == true ? startY == 6 : startY == 1;
+                            if (successStartCondition) {
                                 success = true;
                             }
                             validMove = true;

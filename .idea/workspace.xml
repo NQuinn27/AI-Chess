@@ -27,8 +27,8 @@
       <file leaf-file-name="ChessProject.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/niallquinn/ChessProject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="886">
-              <caret line="672" column="24" selection-start-line="672" selection-start-column="24" selection-end-line="672" selection-end-column="24" />
+            <state relative-caret-position="-132">
+              <caret line="415" column="29" selection-start-line="415" selection-start-column="29" selection-end-line="415" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -565,12 +565,12 @@
       <workItem from="1476436906657" duration="6844000" />
       <workItem from="1476530937729" duration="281000" />
       <workItem from="1476633877358" duration="6018000" />
-      <workItem from="1476640017321" duration="3553000" />
+      <workItem from="1476640017321" duration="3875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26699000" />
+    <option name="totallyTimeSpent" value="27021000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="23" width="1601" height="1023" extended-state="0" />
@@ -802,8 +802,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/niallquinn/ChessProject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="886">
-          <caret line="672" column="24" selection-start-line="672" selection-start-column="24" selection-end-line="672" selection-end-column="24" />
+        <state relative-caret-position="-132">
+          <caret line="415" column="29" selection-start-line="415" selection-start-column="29" selection-end-line="415" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
