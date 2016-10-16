@@ -1,9 +1,11 @@
 package com.niallquinn;
 
+import com.sun.org.apache.xerces.internal.impl.dv.xs.BooleanDV;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.*;
 import javax.swing.*;
 
 /*
@@ -13,12 +15,10 @@ has been coded is a white pawn...a lot done, more to do!
 
 public class ChessProject extends JFrame implements MouseListener, MouseMotionListener {
 
-    private static final String PIECE_FILE_PATH =
-            "/Users/niall/Developer/NCI/Artificial Intelligence/Project1/src/com/niallquinn/";
-
     JLayeredPane layeredPane;
     JPanel chessBoard;
     JLabel chessPiece;
+
     private int xAdjustment;
     private int yAdjustment;
     private int startX;
@@ -264,10 +264,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
         switch (pieceName) {
             case "WhitePawn":
-                moveWhitePawn();
-                break;
             case "BlackPawn":
-                moveBlackPawn();
+                movePawn();
                 break;
             case "WhiteKnight":
             case "BlackKnight":
@@ -343,21 +341,31 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
     /********************************************************************
      *
-     * White Pawn
+     * Pawn
      *
      ********************************************************************/
 
-    private void moveWhitePawn() {
+    private void movePawn() {
         if ((landingX < 0 || landingX > 7) || (landingY < 0 || landingY > 7)) {
             validMove = false;
             return;
         }
-        if (landingY < startY) {
-            validMove = false;
-            return;
+        Boolean whitePawn = pieceName.contains("White");
+        if (whitePawn) {
+            if (landingY < startY) {
+                validMove = false;
+                return;
+            }
+        } else {
+            if (landingY > startY) {
+                validMove = false;
+                return;
+            }
         }
-        if (startY == 1) {
-            if ((yMovement == 1 || yMovement == 2) && (startY < landingY) && xMovement == 0) {
+        Boolean startCondition = whitePawn ? startY == 1 : startY == 6;
+        Boolean directionCondition = whitePawn ? startY < landingY : startY > landingY;
+        if (startCondition) {
+            if ((yMovement == 1 || yMovement == 2) && directionCondition && xMovement == 0) {
                 if (yMovement == 2) {
                     if ((!piecePresent(currentEvent.getX(), (currentEvent.getY()))) && (!piecePresent(currentEvent.getX(), (currentEvent.getY() + 75)))) {
                         validMove = true;
@@ -374,32 +382,50 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             } else if (xMovement == 1 && yMovement == 1) {
                 if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
                     if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                        JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
+                        if (whitePawn) {
+                            JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
+                        }
                         System.exit(1);
                     }
-                    if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
+                    Boolean opponentCondition = whitePawn ? checkWhiteOponent(currentEvent.getX(), currentEvent.getY()): checkBlackOponent(currentEvent.getX(), currentEvent.getY());
+                    if (opponentCondition) {
                         validMove = true;
-                        if (startY == 6) {
-                            success = true;
-                        }
                     } else {
                         validMove = false;
                     }
                 } else {
                     validMove = false;
                 }
-            } else {
-                validMove = false;
             }
         } else {
-            if ((startX - 1 >= 0) || (startX + 1 <= 7)) {
+            Boolean p2StartCondition = whitePawn ? (startX - 1 >= 0) || (startX + 1 <= 7) : (startX <= 7) || (startX - 1 == 0);
+            if (p2StartCondition) {
                 if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
                     if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                        JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
+                        if (whitePawn) {
+                            JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
+                        }
                         System.exit(1);
+                    }
+                    Boolean opponentCondition = whitePawn ? checkWhiteOponent(currentEvent.getX(), currentEvent.getY()): checkBlackOponent(currentEvent.getX(), currentEvent.getY());
+                    if (opponentCondition) {
+                        validMove = true;
+                        Boolean successStartCondition = whitePawn == true ? startY == 6 : startY == 1;
+                        if (successStartCondition) {
+                            success = true;
+                        }
+                    } else {
+                        validMove = false;
                     }
                     if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
                         validMove = true;
+                        if (startY == 6) {
+                            success = true;
+                        }
                     } else {
                         validMove = false;
                     }
@@ -422,89 +448,6 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             }
         }
     }
-
-    /********************************************************************
-     *
-     * Black Pawn
-     *
-     ********************************************************************/
-
-    private void moveBlackPawn() {
-        if ((landingX < 0 || landingX > 7) || (landingY < 0 || landingY > 7)) {
-            validMove = false;
-            return;
-        }
-        if (landingY > startY) {
-            validMove = false;
-            return;
-        }
-        if (startY == 6) {
-            if ((yMovement == 1 || yMovement == 2) && (startY > landingY) && xMovement == 0) {
-                if (yMovement == 2) {
-                    if (!piecePresent(currentEvent.getX(), currentEvent.getY()) && !piecePresent(currentEvent.getX(), (currentEvent.getY() + 75))) {
-                        validMove = true;
-                    } else {
-                        validMove = false;
-                    }
-                } else {
-                    if ((!piecePresent(currentEvent.getX(), (currentEvent.getY())))) {
-                        validMove = true;
-                    } else {
-                        validMove = false;
-                    }
-                }
-            } else if (xMovement == 1 && yMovement == 1) {
-                if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
-                    if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                        JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
-                        System.exit(1);
-                    }
-                    if (checkBlackOponent(currentEvent.getX(), currentEvent.getY())) {
-                        validMove = true;
-                    } else {
-                        validMove = false;
-                    }
-                } else {
-                    validMove = false;
-                }
-            }else {
-                validMove = false;
-            }
-        } else {
-            if ((startX <= 7) || (startX - 1 == 0)) {
-                if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
-                    if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                        JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
-                        System.exit(1);
-                    }
-                    if (checkBlackOponent(currentEvent.getX(), currentEvent.getY())) {
-                        validMove = true;
-                        if (startY == 1) {
-                            success = true;
-                        }
-                    } else {
-                        validMove = false;
-                    }
-                } else {
-                    if (!piecePresent(currentEvent.getX(), (currentEvent.getY()))) {
-                        if (xMovement == 0 && yMovement == 1) {
-                            if (startY == 1) {
-                                success = true;
-                            }
-                            validMove = true;
-                        } else {
-                            validMove = false;
-                        }
-                    } else {
-                        validMove = false;
-                    }
-                }
-            } else {
-                validMove = false;
-            }
-        }
-    }
-
     /********************************************************************
      *
      * Both Knights
