@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c58d7abf-4664-43e9-b7d1-29677f34befd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/niallquinn/ChessProject.java" afterPath="$PROJECT_DIR$/src/com/niallquinn/ChessProject.java" />
-    </list>
+    <list default="true" id="c58d7abf-4664-43e9-b7d1-29677f34befd" name="Default" comment="" />
     <ignored path="Project1.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,8 +25,8 @@
       <file leaf-file-name="ChessProject.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/niallquinn/ChessProject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10032">
-              <caret line="668" column="5" selection-start-line="668" selection-start-column="5" selection-end-line="668" selection-end-column="5" />
+            <state relative-caret-position="418">
+              <caret line="236" column="31" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -550,12 +547,12 @@
       <workItem from="1476530937729" duration="281000" />
       <workItem from="1476633877358" duration="6018000" />
       <workItem from="1476640017321" duration="4529000" />
-      <workItem from="1476816896202" duration="1015000" />
+      <workItem from="1476816896202" duration="1122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28690000" />
+    <option name="totallyTimeSpent" value="28797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="23" width="1640" height="1023" extended-state="0" />
@@ -776,8 +773,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/niallquinn/ChessProject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10032">
-          <caret line="668" column="5" selection-start-line="668" selection-start-column="5" selection-end-line="668" selection-end-column="5" />
+        <state relative-caret-position="418">
+          <caret line="236" column="31" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
