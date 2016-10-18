@@ -137,12 +137,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     }
 
     private Boolean piecePresent() {
-        Component c = chessBoard.findComponentAt(currentEvent.getX(), currentEvent.getY());
-        if (c instanceof JPanel) {
-            return false;
-        } else {
-            return true;
-        }
+        return piecePresent(currentEvent.getX(), currentEvent.getY());
     }
 
     //Check piece is opponent
