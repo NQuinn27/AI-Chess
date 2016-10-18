@@ -115,10 +115,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         panels = (JPanel) chessBoard.getComponent(61);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackKing.png")));
-        panels = (JPanel) chessBoard.getComponent(59);
+        panels = (JPanel) chessBoard.getComponent(60);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackQueen.png")));
-        panels = (JPanel) chessBoard.getComponent(60);
+        panels = (JPanel) chessBoard.getComponent(59);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackRook.png")));
         panels = (JPanel) chessBoard.getComponent(63);
