@@ -38,6 +38,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     public ChessProject() {
         Dimension boardSize = new Dimension(600, 600);
         whiteMove = true;
+        this.setTitle("Whites Turn");
         //  Use a Layered Pane for this application
         layeredPane = new JLayeredPane();
         getContentPane().add(layeredPane);
@@ -230,6 +231,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         }
 
         whiteMove = !whiteMove;
+        String title = whiteMove ? "Whites Turn" : "Blacks Turn";
+        this.setTitle(title);
 
         switch (pieceName) {
             case "WhitePawn":

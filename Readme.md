@@ -10,6 +10,7 @@ This repository is an IntelliJ IDEA project. Check it out and run using IDEA. To
 ### Phase 1 - Game Logic
 
 - [x] White starts, turns alternate.  
+- [x] Current player communicated as window title.  
 
 #### Pawn
 - [x] Moves only forwards  
