@@ -2,10 +2,15 @@
 
 This is a project for NCI Year 4 Introduction to Artificiall Intelligence.  
 
-### Instructions
+## Instructions
 This repository is an IntelliJ IDEA project. Check it out and run using IDEA. To compile manually, remove the package declaration from ChessProject.java, and 'javac ChessProject.java;' 'java ChessProject'  
 
-## Completion  
+## Completion 
+ 
+### Phase 1 - Game Logic
+
+- [x] White starts, turns alternate.  
+
 #### Pawn
 - [x] Moves only forwards  
 - [x] Takes two moves on first turn    
@@ -37,3 +42,6 @@ This repository is an IntelliJ IDEA project. Check it out and run using IDEA. To
 - [x] Can move to any square in a 1-square box around starting point.  
 - [x] Cannot move to within one square of opponent King.  
 - [ ] Cannot move into an opposing check position.  
+
+### Phase 2 - Artificial Intelligence Agents  
+TODO
