@@ -18,6 +18,7 @@ This repository is an IntelliJ IDEA project. Check it out and run using IDEA. To
 - [x] Takes one move on subsequent turns.    
 - [x] Can take an opponent by moving in a diagonal.  
 - [x] Can turn into a piece of players choice when reaches the end of the board.  
+![Alt text](images/pawn.gif?raw=true "Pawn Movement")
 
 #### Knight  
 - [x] Moves in an 'L' shape with 2 and 1 squares respectively. 
