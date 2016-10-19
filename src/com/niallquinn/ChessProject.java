@@ -125,9 +125,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         panels.add(pieces);
     }
 
-    /*
-    This method checks if there is a piece present on a particular square.
-    */
+    //This method checks if there is a piece present on a particular square.
     private Boolean piecePresent(int x, int y) {
         Component c = chessBoard.findComponentAt(x, y);
         if (c instanceof JPanel) {
@@ -331,10 +329,14 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         }
         Boolean startCondition = whitePawn ? startY == 1 : startY == 6;
         Boolean directionCondition = whitePawn ? startY < landingY : startY > landingY;
+        //On the first move, pawn can move 2 spaces.
+        //Pawn can only move forward (White = Y+, Black = Y-)
+        //Pawn can also take an opponent on his first move.
         if (startCondition) {
             if ((yMovement == 1 || yMovement == 2) && directionCondition && xMovement == 0) {
                 if (yMovement == 2) {
-                    if ((!piecePresent(currentEvent.getX(), (currentEvent.getY()))) && (!piecePresent(currentEvent.getX(), (currentEvent.getY() + 75)))) {
+                    if ((!piecePresent(currentEvent.getX(), (currentEvent.getY()))) &&
+                            (!piecePresent(currentEvent.getX(), (currentEvent.getY() + 75)))) {
                         validMove = true;
                     } else {
                         validMove = false;
@@ -347,7 +349,9 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                     }
                 }
             } else if (xMovement == 1 && yMovement == 1) {
+                //Diagonal, trying to take opponent. Check if opponent is there.
                 if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
+                    //If opponent is King, its over!
                     if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
                         String winMessage = whitePawn ? "Game Over - White Wins!!" : "Game Over - Black Wins!!";
                         JOptionPane.showMessageDialog(null, winMessage);
@@ -366,6 +370,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         } else {
             Boolean p2StartCondition = whitePawn ? (startX - 1 >= 0) || (startX + 1 <= 7) : (startX <= 7) || (startX - 1 == 0);
             if (p2StartCondition) {
+                //Enforce that  movement is diagonal, 1 square AND opponent piece is present
                 if (piecePresent(currentEvent.getX(), currentEvent.getY()) && (xMovement == 1) && (yMovement == 1)) {
                     if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
                         String winMessage = whitePawn ? "Game Over - White Wins!!" : "Game Over - Black Wins!!";
@@ -379,6 +384,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                         validMove = false;
                     }
                 } else {
+                    //Normal move, no piece present, movement only 1 square in the Y direction.
                     if (!piecePresent(currentEvent.getX(), (currentEvent.getY()))) {
                         if (xMovement == 0 && yMovement == 1) {
                             Boolean successStartCondition = whitePawn == true ? startY == 6 : startY == 1;
@@ -405,7 +411,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             validMove = false;
             return;
         }
-        
+
+        //Knight moves in an L shape, with one leg 2 and one leg 1.
         if ((xMovement == 1 && yMovement == 2) || (xMovement == 2 && yMovement == 1)) {
             completeMove();
         } else {
@@ -421,6 +428,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             validMove = false;
             return;
         } else {
+            //Bishop can move diagonally, with no piece in the way
             validMove = true;
             if (xMovement == yMovement) {
                 inTheWay = inTheWayDiagonal();
@@ -441,6 +449,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             validMove = false;
             return;
         }
+        //Rook can move vertical or horizontal, with no piece in the way
         if ((xMovement !=0 && yMovement == 0) || (yMovement != 0 && xMovement == 0)) {
             Boolean inTheWay = inTheWayLateral();
             if (inTheWay) {
@@ -460,6 +469,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
             return;
         }
         Boolean inTheWay = false;
+        //Queen can move vertical, horizontal and diagonal, with no piece in the way
         if ((xMovement != 0 && yMovement == 0) || (yMovement != 0 && xMovement == 0)) {
             //Lateral
             inTheWay = inTheWayLateral();
@@ -481,11 +491,12 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     //King
     private void moveKing() {
         validMove = true;
+        //If either absX or absY movement is larger than 1, we know King has overstepped
         if (xMovement > 1 || yMovement > 1) {
             validMove = false;
             return;
         }
-        //Ensure King is not near where we are moving to
+        //Ensure King is not within 1 square of where we are moving to
         if ((checkKingAtLoc(currentEvent.getX() - 75, currentEvent.getY() + 75))
                 || (checkKingAtLoc(currentEvent.getX() - 75, currentEvent.getY()))
                 || (checkKingAtLoc(currentEvent.getX() - 75, currentEvent.getY() - 75))
