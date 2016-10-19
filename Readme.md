@@ -24,16 +24,19 @@ This repository is an IntelliJ IDEA project. Check it out and run using IDEA. To
 - [x] Moves in an 'L' shape with 2 and 1 squares respectively. 
 - [x] 'Jumps' - i.e doesnt matter if there is a piece in the way.  
 - [x] Can take an opponent on landing square.  
+![Alt text](images/knight.gif?raw=true "Knight Movement")  
 
 #### Bishop  
 - [x] Moves in any diagonal any number of squares.  
 - [x] Must be no piece in the way.  
 - [x] Can take an opponent on landing square.  
+![Alt text](images/bishop.gif?raw=true "Bishop Movement")  
 
 #### Rook  
 - [x] Can move vertically or horizontally any number of squares. 
 - [x] Must be no piece in the way.  
 - [x] Can take an opponent on landing square.  
+![Alt text](images/rook.gif?raw=true "Rook Movement") 
 
 #### Queen  
 - [x] Can move vertically, horizontally or diagonally any number of squares.  
