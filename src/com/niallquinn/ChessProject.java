@@ -172,6 +172,24 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         xAdjustment = parentLocation.x - e.getX();
         yAdjustment = parentLocation.y - e.getY();
         chessPiece = (JLabel) c;
+
+        String tmp = chessPiece.getIcon().toString();
+        pieceName = new File(tmp).getName();
+        pieceName = pieceName.substring(0, (pieceName.length() - 4));
+
+        //Logic to enforce turns. White goes first
+        if (whiteMove) {
+            if (!pieceName.contains("White")) {
+                JOptionPane.showMessageDialog(null, "It is Whites Turn!!");
+                return;
+            }
+        } else {
+            if (!pieceName.contains("Black")) {
+                JOptionPane.showMessageDialog(null, "It is Blacks Turn!!");
+                return;
+            }
+        }
+
         initialX = e.getX();
         initialY = e.getY();
         startX = (e.getX() / 75);
@@ -191,6 +209,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         currentEvent = e;
         if (chessPiece == null) return;
 
+        whiteMove = !whiteMove;
+        
         chessPiece.setVisible(false);
         success = false;
         Component c = chessBoard.findComponentAt(e.getX(), e.getY());
@@ -213,22 +233,6 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         System.out.println("The landing coordinates are : "+"( "+landingX+","+landingY+")");
         System.out.println("----------------------------------------------");
 
-        //Logic to enforce turns. White goes first
-        if (whiteMove) {
-            if (!pieceName.contains("White")) {
-                JOptionPane.showMessageDialog(null, "It is Whites Turn!!");
-                putPieceBack();
-                return;
-            }
-        } else {
-            if (!pieceName.contains("Black")) {
-                JOptionPane.showMessageDialog(null, "It is Blacks Turn!!");
-                putPieceBack();
-                return;
-            }
-        }
-
-        whiteMove = !whiteMove;
         String title = whiteMove ? "Whites Turn" : "Blacks Turn";
         this.setTitle(title);
 
