@@ -115,10 +115,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         panels = (JPanel) chessBoard.getComponent(61);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackKing.png")));
-        panels = (JPanel) chessBoard.getComponent(60);
+        panels = (JPanel) chessBoard.getComponent(59);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackQueen.png")));
-        panels = (JPanel) chessBoard.getComponent(59);
+        panels = (JPanel) chessBoard.getComponent(60);
         panels.add(pieces);
         pieces = new JLabel(new ImageIcon(ChessProject.class.getResource("BlackRook.png")));
         panels = (JPanel) chessBoard.getComponent(63);
@@ -530,21 +530,21 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     private void completeMove() {
         if (piecePresent(currentEvent.getX(), currentEvent.getY())) {
             if (pieceName.contains("White")) {
-                if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                    JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
-                    System.exit(1);
-                }
                 if (checkWhiteOponent(currentEvent.getX(), currentEvent.getY())) {
+                    if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
+                        JOptionPane.showMessageDialog(null, "Game Over - White Wins!!");
+                        System.exit(1);
+                    }
                     validMove = true;
                 } else {
                     validMove = false;
                 }
             } else if (pieceName.contains("Black")) {
-                if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
-                    JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
-                    System.exit(1);
-                }
                 if (checkBlackOponent(currentEvent.getX(), currentEvent.getY())) {
+                    if (isGameOver(currentEvent.getX(), currentEvent.getY())) {
+                        JOptionPane.showMessageDialog(null, "Game Over - Black Wins!!");
+                        System.exit(1);
+                    }
                     validMove = true;
                 } else {
                     validMove = false;
