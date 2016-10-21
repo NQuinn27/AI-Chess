@@ -1,4 +1,3 @@
-package com.niallquinn;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -210,7 +209,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         if (chessPiece == null) return;
 
         whiteMove = !whiteMove;
-        
+
         chessPiece.setVisible(false);
         success = false;
         Component c = chessBoard.findComponentAt(e.getX(), e.getY());
@@ -225,13 +224,13 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         xMovement = Math.abs((e.getX()/75)-startX);
         yMovement = Math.abs((e.getY()/75)-startY);
 
-        System.out.println("----------------------------------------------");
-        System.out.println("The piece that is being moved is : "+pieceName);
-        System.out.println("The starting coordinates are : "+"( "+startX+","+startY+")");
-        System.out.println("The xMovement is : "+xMovement);
-        System.out.println("The yMovement is : "+yMovement);
-        System.out.println("The landing coordinates are : "+"( "+landingX+","+landingY+")");
-        System.out.println("----------------------------------------------");
+        // System.out.println("----------------------------------------------");
+        // System.out.println("The piece that is being moved is : "+pieceName);
+        // System.out.println("The starting coordinates are : "+"( "+startX+","+startY+")");
+        // System.out.println("The xMovement is : "+xMovement);
+        // System.out.println("The yMovement is : "+yMovement);
+        // System.out.println("The landing coordinates are : "+"( "+landingX+","+landingY+")");
+        // System.out.println("----------------------------------------------");
 
         String title = whiteMove ? "Whites Turn" : "Blacks Turn";
         this.setTitle(title);
@@ -279,7 +278,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                 pane.setSelectionValues(options);
                 pane.setInitialSelectionValue(options[0]);
                 JDialog dialog = pane.createDialog(layeredPane, "Success");
-                dialog.show();
+                dialog.setVisible(true);
                 String selectedPiece = pane.getInputValue().toString();
                 if (c instanceof JLabel) {
                     Container parent = c.getParent();
@@ -681,4 +680,3 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         frame.setVisible(true);
     }
 }
-
