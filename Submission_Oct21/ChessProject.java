@@ -1,3 +1,10 @@
+/*
+* Niall Quinn
+* BSHCE4 - Software Development
+* X13108727
+* niall.quinn1@student.ncirl.ie
+*/
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;

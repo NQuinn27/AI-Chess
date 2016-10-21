@@ -210,7 +210,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         if (chessPiece == null) return;
 
         whiteMove = !whiteMove;
-        
+
         chessPiece.setVisible(false);
         success = false;
         Component c = chessBoard.findComponentAt(e.getX(), e.getY());
@@ -279,7 +279,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                 pane.setSelectionValues(options);
                 pane.setInitialSelectionValue(options[0]);
                 JDialog dialog = pane.createDialog(layeredPane, "Success");
-                dialog.show();
+                dialog.setVisible(true);
                 String selectedPiece = pane.getInputValue().toString();
                 if (c instanceof JLabel) {
                     Container parent = c.getParent();
